@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_27_143341) do
+ActiveRecord::Schema.define(version: 2019_06_27_181250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,17 @@ ActiveRecord::Schema.define(version: 2019_06_27_143341) do
     t.string "firmware_version"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "measures", force: :cascade do |t|
+    t.decimal "temperature"
+    t.decimal "air_humidity"
+    t.decimal "carbon_monoxide"
+    t.string "health_status"
+    t.bigint "device_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["device_id"], name: "index_measures_on_device_id"
   end
 
 end
