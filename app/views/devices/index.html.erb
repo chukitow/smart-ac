@@ -11,7 +11,7 @@
                   <th scope="col">Serial number</th>
                   <th scope="col">Firmware version</th>
                   <th scope="col">Registration date</th>
-                  <th scope="col"></th>
+                  <th scope="col-1"></th>
                 </tr>
               </thead>
               <tbody>
@@ -20,7 +20,7 @@
                     <td><%= device.serial_number %></td>
                     <td><%= device.firmware_version %></td>
                     <td><%= I18n.localize device.created_at, format: :long %></td>
-                    <td></td>
+                    <td><%= link_to "See sensors", device_measures_path(device) %></td>
                   </tr>
                 <% end %>
               </tbody>

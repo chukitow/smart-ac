@@ -7,7 +7,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :devices, only: [:index]
+  resources :devices, only: [:index] do
+    resources :measures, only: [:index]
+  end
+
   resources :sessions, only: [:new, :create, :destroy]
 
   root 'devices#index'

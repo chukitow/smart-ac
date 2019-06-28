@@ -5,3 +5,12 @@ body {
 .table-container {
   padding: 30px 0px;
 }
+
+.measures-container {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.filter-select {
+  margin-right: 10px;
+}

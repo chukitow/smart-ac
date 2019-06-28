@@ -1,4 +1,6 @@
 class Measure < ApplicationRecord
+  WARNING_STATUS = ['needs_service', 'needs_new_filter', 'gas_leak'].freeze
+
   belongs_to :device
 
   validates :air_humidity,
@@ -16,4 +18,8 @@ class Measure < ApplicationRecord
   validates :temperature,
               presence: true,
               numericality: true
+
+  def notificable?
+    WARNING_STATUS.include?(self.health_status)
+  end
 end

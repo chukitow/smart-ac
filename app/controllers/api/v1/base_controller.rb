@@ -1,4 +1,4 @@
-class Api::V1::BaseController < Api::V1::ApplicationController
+class Api::V1::BaseController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :set_cors
   before_action :authenticate_client

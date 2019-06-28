@@ -1,0 +1,61 @@
+<div class="measures-container">
+  <div class="my-5">
+    <%= link_to 'Go back', devices_path, class: 'btn btn-primary' %>
+  </div>
+  <div class="row">
+    <div class="col-sm-4 col-md-4 col-lg-4 mx-auto">
+      <div class="card table-container my-5">
+        <div class="card-body">
+          <h4 class="text-center">Temperature</h4>
+          <%= line_chart @measures.temperature %>
+          <div class="my-5">
+            <%= form_with(local: true, url: device_measures_path(@device), class: 'form-inline', method: :get) do |f| %>
+              <div class="form-group">
+                <%= f.select('filter[temperature]', Measures::Filter.filters_collection, { selected: params.dig(:filter, :temperature) }, class: 'form-control filter-select')%>
+                <%= f.hidden_field 'filter[air_humidity]', value: params.dig(:filter, :air_humidity) %>
+                <%= f.hidden_field 'filter[carbon_monoxide]', value: params.dig(:filter, :carbon_monoxide) %>
+                <button type="submit" class="btn btn-primary">Filter</button>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4 mx-auto">
+      <div class="card table-container my-5">
+        <div class="card-body">
+          <h4 class="text-center">Air humidity</h4>
+          <%= line_chart @measures.air_humidity %>
+          <div class="my-5">
+            <%= form_with(local: true, url: device_measures_path(@device), class: 'form-inline', method: :get) do |f| %>
+              <div class="form-group">
+                <%= f.select('filter[air_humidity]', Measures::Filter.filters_collection, { selected: params.dig(:filter, :air_humidity) }, class: 'form-control filter-select')%>
+                <%= f.hidden_field 'filter[temperature]', value: params.dig(:filter, :temperature) %>
+                <%= f.hidden_field 'filter[carbon_monoxide]', value: params.dig(:filter, :carbon_monoxide) %>
+                <button type="submit" class="btn btn-primary">Filter</button>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4 mx-auto">
+      <div class="card table-container my-5">
+        <div class="card-body">
+          <h4 class="text-center">Carbon Monoxide</h4>
+          <%= line_chart @measures.carbon_monoxide %>
+          <div class="my-5">
+            <%= form_with(local: true, url: device_measures_path(@device), class: 'form-inline', method: :get) do |f| %>
+              <div class="form-group">
+                <%= f.select('filter[carbon_monoxide]', Measures::Filter.filters_collection, { selected: params.dig(:filter, :carbon_monoxide) }, class: 'form-control filter-select')%>
+                <%= f.hidden_field 'filter[air_humidity]', value: params.dig(:filter, :air_humidity) %>
+                <%= f.hidden_field 'filter[temperature]', value: params.dig(:filter, :temperature) %>
+                <button type="submit" class="btn btn-primary">Filter</button>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
