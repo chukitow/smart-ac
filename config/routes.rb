@@ -6,4 +6,9 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resources :devices, only: [:index]
+  resources :sessions, only: [:new, :create, :destroy]
+
+  root 'devices#index'
 end
