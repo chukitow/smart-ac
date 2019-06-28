@@ -1,5 +1,7 @@
 class DevicesController < ApplicationController
   before_action :authenticate
-  
-  def index; end
+
+  def index
+    @devices = Device.all
+  end
 end

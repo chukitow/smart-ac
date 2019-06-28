@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12 mx-auto">
+      <div class="card table-container my-5">
+        <h2 class="text-center">Registered devices</h2>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Serial number</th>
+                  <th scope="col">Firmware version</th>
+                  <th scope="col">Registration date</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @devices.each do |device| %>
+                  <tr>
+                    <td><%= device.serial_number %></td>
+                    <td><%= device.firmware_version %></td>
+                    <td><%= I18n.localize device.created_at, format: :long %></td>
+                    <td></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
