@@ -1,7 +1,3 @@
-User.create(email: 'admin@smartac.io', password: '12345678', password_confirmation: '12345678')
-
-ApiClient.create(token: '12345678')
-
 1.upto(10) do |x|
   device = Device.create(serial_number: "00000#{x}", firmware_version: '2.0.0')
   1.upto(100) do |y|
