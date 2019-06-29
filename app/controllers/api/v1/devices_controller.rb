@@ -1,4 +1,6 @@
 class Api::V1::DevicesController < Api::V1::BaseController
+  include DevicesDocs
+
   def create
     device = Device.new(device_params)
 

@@ -1,4 +1,5 @@
 class Api::V1::MeasuresController < Api::V1::BaseController
+  include MeasuresDoc 
   before_action :find_device
 
   def create
