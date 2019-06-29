@@ -32,7 +32,9 @@
       </nav>
     </header>
     <main>
-      <%= render partial: 'partials/notification', locals: { notifications: active_notifications }%>
+      <% unless current_user.nil? %>
+        <%= render partial: 'partials/notification', locals: { notifications: active_notifications }%>
+      <% end %>
       <%= yield %>
     </main>
   </body>
