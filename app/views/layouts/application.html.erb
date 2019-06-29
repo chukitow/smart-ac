@@ -31,6 +31,9 @@
         </div>
       </nav>
     </header>
-    <%= yield %>
+    <main>
+      <%= render partial: 'partials/notification', locals: { notifications: active_notifications }%>
+      <%= yield %>
+    </main>
   </body>
 </html>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_28_010841) do
+ActiveRecord::Schema.define(version: 2019_06_29_153829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,12 @@ ActiveRecord::Schema.define(version: 2019_06_28_010841) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["device_id"], name: "index_measures_on_device_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.boolean "read", default: false
+    t.bigint "measure_id"
+    t.index ["measure_id"], name: "index_notifications_on_measure_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -2,6 +2,34 @@
   <div class="my-5">
     <%= link_to 'Go back', devices_path, class: 'btn btn-primary' %>
   </div>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12 mx-auto">
+      <div class="card table-container">
+        <div class="card-body">
+          <h2 class="text-center">Device Information</h2>
+          <div class="table-responsive my-5">
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Serial number</th>
+                  <th scope="col">Firmware version</th>
+                  <th scope="col">Registration date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><%= @device.serial_number %></td>
+                  <td><%= @device.firmware_version %></td>
+                  <td><%= I18n.localize @device.created_at, format: :long %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-sm-4 col-md-4 col-lg-4 mx-auto">
       <div class="card table-container my-5">

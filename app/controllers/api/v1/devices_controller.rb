@@ -3,7 +3,7 @@ class Api::V1::DevicesController < Api::V1::BaseController
     device = Device.new(device_params)
 
     if device.save
-      render json: device, status: :ok
+      render json: device.to_h, status: :ok
     else
       render json: {
         error: device.errors.full_messages.shift

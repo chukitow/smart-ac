@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     resources :measures, only: [:index]
   end
 
+  resources :notifications, only: [:update]
+  
   resources :sessions, only: [:new, :create, :destroy]
 
   root 'devices#index'

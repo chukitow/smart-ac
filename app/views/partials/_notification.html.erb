@@ -1,0 +1,6 @@
+<% notifications.each  do |notification|%>
+  <div class="alert alert-warning" role="alert">
+    <p>Device <%= link_to "##{notification.measure.device.serial_number}", device_measures_path(notification.measure.device) %> reported <%= friendly_notification_message(notification) %></p>
+    <%= link_to 'Mark as resolved', notification_path(notification), method: :put, class: 'btn btn-primary' %>
+  </div>
+<% end %>

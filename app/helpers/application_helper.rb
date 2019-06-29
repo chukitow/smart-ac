@@ -1,11 +1,8 @@
 module ApplicationHelper
-  def health_status_badge(measure)
-    badge_status = if measure.notificable?
-      'badge badge-warning'
-    else
-      'badge badge-success'
-    end
-
-    content_tag(:span, measure.health_status, class: badge_status)
+  def friendly_notification_message(notification)
+    issues = []
+    issues << 'a value of Carbon Monoxide of over 9 PPM' if notification.measure.hight_carbon_monoxide?
+    issues << "a health status of #{notification.measure.health_status}" if notification.measure.not_healthy?
+    issues.to_sentence
   end
 end

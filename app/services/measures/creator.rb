@@ -17,7 +17,10 @@ module Measures
 
     def perform
       @device.transaction do
-        @device.measures.create!(measures)
+        measures.each do |measure|
+          measure = @device.measures.create!(measure)
+          create_notification(measure)
+        end
       end
       rescue
         @error = "Something went wrong while storing sensor's data"
@@ -33,6 +36,21 @@ module Measures
     end
 
     private
+
+    def create_notification(measure)
+      return unless measure.notificable?
+      Notification.create(measure: measure) if should_be_reported?(measure)
+    end
+
+    def should_be_reported?(measure)
+      unread_notifications.empty? ||
+      measure.not_healthy? && !unread_notifications.any?(&:not_healthy?) ||
+      measure.hight_carbon_monoxide? && !unread_notifications.any?(&:hight_carbon_monoxide?)
+    end
+
+    def unread_notifications
+      @unread_notifications ||= @device.measures_with_unread_notifications
+    end
 
     def valid_payload?
       @params.is_a?(Array)

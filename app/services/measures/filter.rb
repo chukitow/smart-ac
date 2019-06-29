@@ -1,6 +1,7 @@
 module Measures
   class Filter
     FILTERS = {
+      all: 'all',
       today: 'day',
       this_week: 'week',
       this_month: 'month',
@@ -31,12 +32,14 @@ module Measures
     private
 
     def sensor_data(sensor)
-      @device.measures.where(created_at: date_range(sensor)).pluck(:created_at, sensor)
+      @device.measures.where(date_range(sensor)).pluck(:created_at, sensor)
     end
 
     def date_range(sensor)
-      date = @params.dig(:filter, sensor).presence || 'day'
+      date = @params.dig(:filter, sensor)
+      return if !date.present? || date == 'all'
       Date.today.send("beginning_of_#{date}")..Date.today.send("end_of_#{date}")
+      { created_at: Date.today.send("beginning_of_#{date}")..Date.today.send("end_of_#{date}") }
     end
   end
 end
